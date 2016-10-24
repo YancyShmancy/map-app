@@ -1,6 +1,6 @@
-# Interactive Map Application #
- ============= 
- ## An interactive map application built with Mapbox ##
+# Interactive Map Application
+
+ ## An interactive map application built with Mapbox
 
 Goals:
 * Show Map of Atlanta
