@@ -1,5 +1,9 @@
-@import "../../node_modules/bootstrap/scss/bootstrap";
+
 @import "partials/variables";
+
+body, html {
+    margin: 0;
+}
 
 * {
 	box-sizing: border-box;
@@ -28,5 +32,52 @@
     left: 10px;
     padding: 10px;
     display: none;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+#info-window {
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    margin-left: -400px;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: 0.2s all ease-out;
+    z-index: 9999999;
+    -webkit-box-shadow: 0px 7px 16px 5px rgba(0,0,0,0.13);
+    -moz-box-shadow: 0px 7px 16px 5px rgba(0,0,0,0.13);
+    box-shadow: 0px 7px 16px 5px rgba(0,0,0,0.13);
+    padding: 20px;
+    
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    span.close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        
+        i {
+            font-size: 1.2em;
+        }
+    }
 }
 
