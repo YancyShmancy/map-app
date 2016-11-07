@@ -1,13 +1,16 @@
 (function leafletMap() {
-    
     var count = 0;
     var mapboxAccessToken = 'pk.eyJ1IjoieWFuY3lzaG1hbmN5IiwiYSI6ImNpdW8yZnNpazAwNTgzb251cGxwdDFhbTcifQ.TuwAZkiKbJOk94JY0v_eQw';
     var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).setView([33.761354, -84.380788], 9);
     
-    $(document).on('scroll', function(e) {
-        e.preventDefault();
-    })
-    
+    $.ajax({
+        url: 'http://localhost:8888/map-test/zip_code?query=all',
+        method: 'GET',
+        dataType: 'json',
+        success: function(d) {
+            console.log(d);
+        }
+    });
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+mapboxAccessToken, {
         id: 'mapbox.light',
         attribution: '...'
@@ -62,18 +65,24 @@
     function highlightFeature(e) {
         var layer = e.target;
         
-        layer.setStyle({
-            weight: 5,
-            color: '#666',
-            dashArray: '',
-            fillOpacity: 0.7
+        $.each(data, function(zip, zipValue) {
+            if (zip == layer.feature.properties.ZIP) {
+                layer.setStyle({
+                    weight: 2,
+                    color: '#666',
+                    dashArray: '',
+                    fillOpacity: 0.7
+                });
+                
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                    layer.bringToFront();
+                }
+
+                info.update(layer.feature.properties);
+            } else {
+                return;
+            }
         });
-        
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
-        }
-        
-        info.update(layer.feature.properties);
     }
     
     function resetHighlight(e) {
@@ -84,19 +93,20 @@
     
     function zoomToFeature(e) {
         var layer = e.target;
-        
-        map.fitBounds(e.target.getBounds());
-        
         var layerData; 
         
         $.each(data, function(zip, zipValue) {
             if (zip == layer.feature.properties.ZIP) {
                 zipValue[0].zipCode = zip;
                 layerData = zipValue[0];
+                map.fitBounds(layer.getBounds());
+                $(document).trigger('info-window', {props: layerData});
+            } else {
+                return;
             }
         });
         
-        $(document).trigger('info-window', {props: layerData});
+        
     }
     
     function onEachFeature(feature, layer) {
@@ -162,6 +172,22 @@
         
         $infoDiv.addClass('active');
         $infoDiv.html('<div>'+properties.zipCode+'</div>');
+        var $table = $('<table>');
+        
+        $.each(properties, function(property, value) {
+            console.log($.type(value));
+            
+            if ($.type(value) == 'object') {
+                $.each(value, function(subProperty, subValue) {
+                    $table.append('<tr><td>' + property + subProperty + '</td><td>' + subValue + '</td></tr>')
+                })
+            } else {
+                $table.append('<tr><td>' + property + '</td><td>' + value + '</td></tr>');
+            }
+            
+        })
+        
+        $infoDiv.append($table);
         
         var $closeButton = $('<span class="close"><i class="fa fa-times"></i></span>');
         $closeButton.on('click', function() {
