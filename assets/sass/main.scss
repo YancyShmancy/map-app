@@ -12,6 +12,13 @@ body, html {
 	box-sizing: border-box;
 }
 
+.center-text {
+    text-align: center;
+}
+
+.right-text {
+    text-align: right;
+}
 #options, #map {
 	height: 100vh;
 }
@@ -51,8 +58,16 @@ body, html {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100px;
+    
+    .bottom-bar {
+        width: 100%;
+        height: 100px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
     .one-fourth {
         float: left;
         width: 25%;
@@ -108,6 +123,7 @@ body, html {
         cursor: pointer;
         height: 30px;
         width: 30px;
+        color: white;
         
         span {
             display: block;
@@ -222,6 +238,7 @@ body, html {
             width: 50%;
             height: auto;
             
+            
             h1 {
                 float: left;
                 text-align: center;
@@ -244,7 +261,12 @@ body, html {
                 height: auto;
                 
                 &:nth-of-type(1) {
-                    padding-right: 40px;
+                    padding-right: 20px;
+                    border-right: 1px dotted white;
+                }
+                
+                &:nth-of-type(2) {
+                    padding-left: 20px;
                 }
             }
         }
@@ -297,32 +319,15 @@ body, html {
                     background-color: darkblue;
                 }
             }
+        }
+        
+        .total-numbers {
+            float: left;
+            width: 100%;
             
-            .text-container {
-                margin: 0;
-                float: left;
-                width: 70%;
-                text-align: left;
-                position: relative;
-                height: 100%;
-                
-                h3 {
-                    font-size: 0.8em;
-                    margin: 0;
-                    position: absolute;
-                    top: 50%;
-                    left: 0;
-                    transform: translateY(-50%);
-                }
-            }
-            
-            .score {
-                float: left;
-                width: 30%;
-                height: 100%;
-                text-align: center;
-                line-height: 75px;
-                font-size: 2em;
+            span {
+                font-size: 0.8em;
+                padding-right: 10px;
             }
         }
     }
@@ -333,6 +338,39 @@ body, html {
         position: relative;
         padding: 20px;
     }
+}
+
+.one-fourth, .one-third {
+    .text-container {
+        margin: 0;
+        float: left;
+        width: 70%;
+        text-align: left;
+        position: relative;
+        height: 100%;
+
+        h3 {
+            font-size: 0.8em;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    .score {
+        float: left;
+        width: 30%;
+        height: 100%;
+        text-align: center;
+        line-height: 75px;
+        font-size: 2em;
+    }
+}
+
+.one-fourth .score {
+    line-height: 100px;
 }
 
 #childTable {
@@ -358,6 +396,96 @@ body, html {
         background-color: darkblue;
     }
 }
+
+.search-container {
+    position: absolute;
+    z-index: 1;
+}
+
+#map-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background-color: white;
+    -webkit-box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
+-moz-box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
+box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
+    
+    .logo-container {
+        width: 200px;
+        float: left;
+        padding-left: 20px;
+        height: 100%;
+        position: relative;
+        
+        img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    
+    .legend-container {
+        width: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        
+        transform: translateX(-50%) translateY(-50%);
+        h2 {
+            font-size: 1em;
+            float:left;
+        }
+        
+        .legend {
+            width: 200px;
+            float:left;
+            padding-left: 10px;
+            
+            span {
+                float: left;
+                width: 33.3%;
+                
+                padding-right: 2px;
+            }
+            
+            i {
+                float: left;
+                width: calc(20% - 2px);
+                height: 10px;
+                margin-right: 2px;
+                
+                &:nth-of-type(5) {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+.red {
+    background-color: $uw-red;
+}
+
+.orange {
+    background-color: $uw-orange;
+}
+
+.yellow {
+    background-color: $uw-yellow;
+}
+
+.green {
+    background-color: $uw-green;
+}
+
+.darkgreen {
+    background-color: $uw-darkgreen;
+}
+
+
 
 
 

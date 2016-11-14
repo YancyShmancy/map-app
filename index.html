@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>UW Map App-Leaflet</title>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<link rel="stylesheet" href="./assets/leaflet-fusesearch/src/leaflet.fusesearch.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="./assets/css/main.css">
 </head>
@@ -27,10 +28,11 @@
                         <h1 class="big-zip"></h1>
                         <h2 class="score-ratio"></h2>
                     </div>
-                    
-                    
-                    
-                    <span class="total-numbers"></span>
+                    <div class="total-numbers">
+                        <span class="population"></span>
+                        <span class="total-children"></span>
+                        <span class="total-families"></span>
+                    </div>
                 </div>
 	            <div class="meta-info">
 	                <ul>
@@ -161,11 +163,59 @@
 	    </div>
 	    
     </div>
+    
+    <div id="map-topbar">
+        <div class="logo-container">
+            <img src="./assets/img/uwgalogo.png" alt="UWGA Logo">
+        </div>
+        <div class="legend-container">
+            <h2>Levels of Child Wellbeing: </h2>
+            <div class="legend">
+                <span>Low</span>
+                <span class="center-text">Average</span>
+                <span class="right-text">High</span>
+                <br>
+                <i class="red"></i>
+                <i class="orange"></i>
+                <i class="yellow"></i>
+                <i class="green"></i>
+                <i class="darkgreen"></i>
+            </div>
+        </div>
+        
+        <div class="menu-container">
+            
+        </div>
+    </div>
 	<div id="map-overlay">
-	    <div class="one-fourth overall-button" data-target="overall">Overall</div>
-	    <div class="one-fourth child-button" data-target="child">Child</div>
-	    <div class="one-fourth family-button" data-target="family">Family</div>
-	    <div class="one-fourth community-button" data-target="community">Community</div>
+        
+        <div class="bottom-bar">
+            <div class="one-fourth overall-button" data-target="overall">
+                <div class="score overall-score"></div>
+                <div class="text-container">
+                    <h3>Overall <br><span>Scores</span></h3>
+                </div>
+            </div>
+            <div class="one-fourth child-button" data-target="child">
+                <div class="score child-score"></div>
+                <div class="text-container">
+                    <h3>Child <br><span>Scores</span></h3>
+                </div>
+            </div>
+            <div class="one-fourth family-button" data-target="family">
+                <div class="score family-score"></div>
+                <div class="text-container">
+                    <h3>Family <br><span>Scores</span></h3>
+                </div>
+            </div>
+            <div class="one-fourth community-button" data-target="community">
+                <div class="score community-score"></div>
+                <div class="text-container">
+                    <h3>Community <br><span>Scores</span></h3>
+                </div>
+            </div>
+        </div>
+	    
 	</div>
 <!--
 	<div class="col-md-4" id="options">
@@ -175,6 +225,8 @@
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.5.0/fuse.min.js"></script>
+	<script src="./assets/leaflet-fusesearch/src/leaflet.fusesearch.js"></script>
 	<script src="./assets/data/data.js"></script>
 	<script src="./assets/js/zipData.js"></script>
 	<script src="./assets/js/leaflet-app.js"></script>

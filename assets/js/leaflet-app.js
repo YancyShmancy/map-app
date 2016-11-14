@@ -1,19 +1,19 @@
 $(document).ready(function() {
-    var data2;
-    var allFields = [];
+    var allFields = [],
+        mode = 'overall',
+        modeButtons = $('#map-overlay .one-fourth').toArray(),
+        overallScores = [];
     
-    var mode = 'overall';
     $.ajax({
         url: 'http://localhost:8888/map-test/zip_code?query=all',
         method: 'GET',
         dataType: 'json',
         success: function(d) {
-//            data2 = d.score_colors;
-//            console.log(d);
+            console.log(d);
             for(var i=0; i < d.length; i++) {
                 allFields[i] = d[i];
             }
-            console.log(allFields);
+//            console.log(allFields);
             leafletMap();
         },
         complete: function() {
@@ -25,11 +25,27 @@ $(document).ready(function() {
         }
     });
     
+    $(document).on('update-buttons', function(event, properties) {
+        props = properties.properties;
+        overallScores = [];
+        $.each(props, function(key, value) {
+            overallScores.push(value);
+        });
+        for(var i=0; i < modeButtons.length; i++) {
+            $(modeButtons[i]).children('.score').html(overallScores[i]);
+        }
+    });
+    
+    
+    
+    
     function leafletMap() {
         $('#map').innerHTML = "";
         
         var mapboxAccessToken = 'pk.eyJ1IjoieWFuY3lzaG1hbmN5IiwiYSI6ImNpdW8yZnNpazAwNTgzb251cGxwdDFhbTcifQ.TuwAZkiKbJOk94JY0v_eQw';
         var map = L.map('map', { zoomControl: false, scrollWheelZoom: false }).setView([33.761354, -84.380788], 9);
+        
+        
         // ajax call to all on load
         // when button is pressed to filter, filter data
 
@@ -92,26 +108,24 @@ $(document).ready(function() {
         function highlightFeature(e) {
             var layer = e.target;
             
-                $.each(allFields, function(zip, zipValues) {
-                    if (zipValues.zip_code == layer.feature.properties.ZIP) {
-                        layer.setStyle({
-                            weight: 2,
-                            color: '#666',
-                            dashArray: '',
-                            fillOpacity: 0.7
-                        });
+            $.each(allFields, function(zip, zipValues) {
+                if (zipValues.zip_code == layer.feature.properties.ZIP) {
+                    layer.setStyle({
+                        weight: 2,
+                        color: '#666',
+                        dashArray: '',
+                        fillOpacity: 0.7
+                    });
 
-                        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                            layer.bringToFront();
-                        }
-
-                        info.update(layer.feature.properties);
-                    } else {
-                        return;
+                    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                        layer.bringToFront();
                     }
-                });
-            
-            
+                    $(document).trigger('update-buttons', {properties: zipValues.overall_scores});
+                    info.update(layer.feature.properties);
+                } else {
+                    return;
+                }
+            });
         }
 
         function resetHighlight(e) {
@@ -141,6 +155,8 @@ $(document).ready(function() {
                 mouseout: resetHighlight,
                 click: zoomToFeature
             });
+            
+            layer = feature.layer;
         }
 
         // Render Map
@@ -151,7 +167,6 @@ $(document).ready(function() {
         }).addTo(map);
         
         
-
         // Custom Info Control
 
         var info = L.control();
@@ -163,30 +178,40 @@ $(document).ready(function() {
         }
 
         info.update = function(props) {
-            this._div.innerHTML = (props ? '<h1>'+props.ZIP+' Statistics</h1>' : 'Hover over a state');
+            
+            // this._div.innerHTML = (props ? '<h1>'+props.ZIP+' Statistics</h1>' : 'Hover over a state');
+//            modeButtons.forEach(function(button) {
+//                button.child().hasClass('one-fourth').
+//            })
         };
 
         info.addTo(map);
 
         // Show Legend
 
-        var legend = L.control({position: 'bottomright'});
-
-        legend.onAdd = function(map) {
-            var div = L.DomUtil.create('div', 'info legend'),
-                grades = [1, 2, 3, 4, 5],
-                labels = [];
-
-            for (var i = 0; i < grades.length; i++) {
-                div.innerHTML += 
-                    '<i style="background:' + getColor(grades[i]) + '"></i> ' + 
-                    grades[i] + '<br>';
-            }
-
-            return div;
-        }
-
-        legend.addTo(map);
+//        var legend = L.control();
+//
+//        legend.onAdd = function(map) {
+//            var div = L.DomUtil.create('div', 'info legend'),
+//                grades = [1, 2, 3, 4, 5],
+//                labels = [];
+//            
+//            
+//            div.innerHTML += '<div class="legend-container"><h2>Levels of Child Well-Being</h2><span style="float:left; width: 33.3%;">Low</span><span style="float:left; text-align: center; width: 33.3%;">Average</span><span style="float:left; width: 33.3%; text-align: right;">High</span>';
+//            
+//            div.innerHTML += '<br>';
+//
+//            for (var i = 0; i < grades.length; i++) {
+//                div.innerHTML += 
+//                    '<i style="background:' + getColor(grades[i]) + '; float:left"></i> ';
+//            }
+//            
+//            div.innerHTML +='</div>';
+//
+//            return div;
+//        }
+//
+//        legend.addTo(map);
         
         $(document).on('reset-view', function(event) {
             map.setView([33.761354, -84.380788], 9);
@@ -198,7 +223,7 @@ $(document).ready(function() {
                 style: style,
                 onEachFeature: onEachFeature
             }).addTo(map);
-        })
+        });
         
     };
     
@@ -222,6 +247,7 @@ $(document).ready(function() {
             familyData = data.family_fields,
             communityData = data.community_fields,
             overallData = data.overall_scores,
+            popData = data.population_details,
             regionalData = data.regional_data;
 
         $infoDiv.addClass('active');
@@ -232,6 +258,9 @@ $(document).ready(function() {
         $('#info-window .child-score').html(overallData.overall_child_score);
         $('#info-window .family-score').html(overallData.overall_family_score);
         $('#info-window .community-score').html(overallData.overall_community_score);
+        $('#info-window .total-numbers .population').html('Population: ' + popData.total_population);
+        $('#info-window .total-numbers .total-children').html('Children: ' + popData.total_children);
+        $('#info-window .total-numbers .total-families').html('Families: ' + popData.total_families);
 
         var $childTable = $('#childTable'),
             $childDataFields = $('#childTable td.data'),
@@ -300,7 +329,9 @@ $(document).ready(function() {
         });
         count = 0;
 
-        var $closeButton = $('<div class="close-btn"><span></span><span></span><span></span><span></span></div>');
+//        var $closeButton = $('<div class="close-btn"><span></span><span></span><span></span><span></span></div>');
+        
+        var $closeButton = $('<div class="close-btn">X</div>')
         $closeButton.on('click', function() {
             $infoDiv.removeClass('active');
             $(document).trigger('reset-view');

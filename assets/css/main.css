@@ -7,6 +7,12 @@ body, html {
 * {
   box-sizing: border-box; }
 
+.center-text {
+  text-align: center; }
+
+.right-text {
+  text-align: right; }
+
 #options, #map {
   height: 100vh; }
 
@@ -40,8 +46,14 @@ body, html {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100px; }
+  #map-overlay .bottom-bar {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    bottom: 0;
+    left: 0; }
   #map-overlay .one-fourth {
     float: left;
     width: 25%;
@@ -87,7 +99,8 @@ body, html {
     right: 20px;
     cursor: pointer;
     height: 30px;
-    width: 30px; }
+    width: 30px;
+    color: white; }
     #info-window div.close-btn span {
       display: block;
       height: 2px;
@@ -174,7 +187,10 @@ body, html {
         width: auto;
         height: auto; }
         #info-window .info-window--header .zip-info .container:nth-of-type(1) {
-          padding-right: 40px; }
+          padding-right: 20px;
+          border-right: 1px dotted white; }
+        #info-window .info-window--header .zip-info .container:nth-of-type(2) {
+          padding-left: 20px; }
     #info-window .info-window--header .meta-info {
       float: left;
       width: 50%;
@@ -209,32 +225,43 @@ body, html {
           background-color: #F7B77C; }
         #info-window .info-window--header .bottom-bar .one-third:nth-of-type(3) {
           background-color: darkblue; }
-      #info-window .info-window--header .bottom-bar .text-container {
-        margin: 0;
-        float: left;
-        width: 70%;
-        text-align: left;
-        position: relative;
-        height: 100%; }
-        #info-window .info-window--header .bottom-bar .text-container h3 {
-          font-size: 0.8em;
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%); }
-      #info-window .info-window--header .bottom-bar .score {
-        float: left;
-        width: 30%;
-        height: 100%;
-        text-align: center;
-        line-height: 75px;
-        font-size: 2em; }
+    #info-window .info-window--header .total-numbers {
+      float: left;
+      width: 100%; }
+      #info-window .info-window--header .total-numbers span {
+        font-size: 0.8em;
+        padding-right: 10px; }
   #info-window .info-window--tables {
     float: left;
     width: 100%;
     position: relative;
     padding: 20px; }
+
+.one-fourth .text-container, .one-third .text-container {
+  margin: 0;
+  float: left;
+  width: 70%;
+  text-align: left;
+  position: relative;
+  height: 100%; }
+  .one-fourth .text-container h3, .one-third .text-container h3 {
+    font-size: 0.8em;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%); }
+
+.one-fourth .score, .one-third .score {
+  float: left;
+  width: 30%;
+  height: 100%;
+  text-align: center;
+  line-height: 75px;
+  font-size: 2em; }
+
+.one-fourth .score {
+  line-height: 100px; }
 
 #childTable .zip-data,
 #childTable .zip-code-header {
@@ -247,3 +274,67 @@ body, html {
 #communityTable .zip-data,
 #communityTable .zip-code-header {
   background-color: darkblue; }
+
+.search-container {
+  position: absolute;
+  z-index: 1; }
+
+#map-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background-color: white;
+  -webkit-box-shadow: 2px 9px 14px 1px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 2px 9px 14px 1px rgba(0, 0, 0, 0.08);
+  box-shadow: 2px 9px 14px 1px rgba(0, 0, 0, 0.08); }
+  #map-topbar .logo-container {
+    width: 200px;
+    float: left;
+    padding-left: 20px;
+    height: 100%;
+    position: relative; }
+    #map-topbar .logo-container img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%); }
+  #map-topbar .legend-container {
+    width: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%); }
+    #map-topbar .legend-container h2 {
+      font-size: 1em;
+      float: left; }
+    #map-topbar .legend-container .legend {
+      width: 200px;
+      float: left;
+      padding-left: 10px; }
+      #map-topbar .legend-container .legend span {
+        float: left;
+        width: 33.3%;
+        padding-right: 2px; }
+      #map-topbar .legend-container .legend i {
+        float: left;
+        width: calc(20% - 2px);
+        height: 10px;
+        margin-right: 2px; }
+        #map-topbar .legend-container .legend i:nth-of-type(5) {
+          margin-right: 0; }
+
+.red {
+  background-color: #D53F3A; }
+
+.orange {
+  background-color: #F7B77C; }
+
+.yellow {
+  background-color: #FFE59C; }
+
+.green {
+  background-color: #ABD185; }
+
+.darkgreen {
+  background-color: #019B5C; }
