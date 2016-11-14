@@ -324,6 +324,9 @@ body, html {
         #map-topbar .legend-container .legend i:nth-of-type(5) {
           margin-right: 0; }
 
+.leaflet-container .leaflet-control-search {
+  margin-top: 70px; }
+
 .red {
   background-color: #D53F3A; }
 
@@ -338,3 +341,41 @@ body, html {
 
 .darkgreen {
   background-color: #019B5C; }
+
+.leaflet-control-search {
+  position: fixed !important;
+  right: 20px;
+  top: 10px; }
+
+.leaflet-control-search a.search-button {
+  border-radius: 50%; }
+
+.leaflet-control-search.search-exp {
+  border-radius: 50px;
+  width: 200px;
+  height: 30px; }
+  .leaflet-control-search.search-exp input.search-input {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    height: 20px;
+    margin-top: -10px;
+    border: 0px;
+    width: 150px;
+    padding-right: 0; }
+    .leaflet-control-search.search-exp input.search-input:focus {
+      outline: 0; }
+  .leaflet-control-search.search-exp a.search-button {
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    margin-top: -13px;
+    background-color: transparent; }
+  .leaflet-control-search.search-exp ul.search-tooltip {
+    margin-top: 0;
+    width: 100%; }
+  .leaflet-control-search.search-exp a.search-cancel {
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0; }

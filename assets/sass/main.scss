@@ -465,6 +465,10 @@ box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
     }
 }
 
+.leaflet-container .leaflet-control-search {
+    margin-top: 70px;
+}
+
 .red {
     background-color: $uw-red;
 }
@@ -483,6 +487,57 @@ box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
 
 .darkgreen {
     background-color: $uw-darkgreen;
+}
+
+.leaflet-control-search {
+    position: fixed !important;
+    right: 20px;
+    top: 10px;
+}
+
+.leaflet-control-search a.search-button {
+    border-radius: 50%;
+}
+
+.leaflet-control-search.search-exp {
+    border-radius: 50px;
+    width: 200px;
+    height: 30px;
+    
+    input.search-input {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        height: 20px; 
+        margin-top: -10px;
+        border: 0px;
+        width: 150px;
+        padding-right: 0;
+        
+        &:focus {
+            outline: 0;
+        }
+    }
+    
+    a.search-button {
+        position: absolute;
+        right: 7px;
+        top: 50%;
+        margin-top: -13px;
+        background-color: transparent;
+    }
+    
+    ul.search-tooltip {
+        margin-top: 0;
+        width: 100%;
+    }
+    
+    a.search-cancel {
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+    }
 }
 
 

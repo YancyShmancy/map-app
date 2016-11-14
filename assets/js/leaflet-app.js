@@ -155,8 +155,6 @@ $(document).ready(function() {
                 mouseout: resetHighlight,
                 click: zoomToFeature
             });
-            
-            layer = feature.layer;
         }
 
         // Render Map
@@ -212,6 +210,32 @@ $(document).ready(function() {
 //        }
 //
 //        legend.addTo(map);
+        var searchControl = new L.Control.Search({
+            layer: geojson,
+            propertyName: 'ZIP',
+            circleLocation: true,
+            moveToLocation: function(latlng, title, map) {
+                var zoom = map.getBoundsZoom(latlng.layer.getBounds());
+                map.setView(latlng, zoom);
+            }
+        });
+        
+        searchControl.on('search:locationfound', function(e) {
+            e.layer.setStyle({ 
+                weight: 4,
+                fillOpacity: 0.7,
+                color: '#666'
+            })
+        }).on('search:collapsed', function(e) {
+            geojson.eachLayer(function(layer) {
+                geojson.resetStyle(layer);
+                
+            });
+            map.setView([33.761354, -84.380788], 9);
+        });
+        
+        map.addControl(searchControl);
+        
         
         $(document).on('reset-view', function(event) {
             map.setView([33.761354, -84.380788], 9);
@@ -251,7 +275,7 @@ $(document).ready(function() {
             regionalData = data.regional_data;
 
         $infoDiv.addClass('active');
-
+        
         $('#info-window .big-zip').html(data.zip_code);
         $('#info-window .overall-score').html(overallData.overall_cwb_score);
         $('#info-window .score-ratio').html('Score ' + overallData.overall_cwb_score + ' / 100');
