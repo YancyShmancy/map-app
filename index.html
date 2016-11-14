@@ -8,12 +8,165 @@
 	<link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
+    <div id="loader">
+        <img src="./assets/img/rolling.gif" alt="Loader Gif">
+    </div>
 
 	<div class="col-xs-12" id="map">
 		
 	</div>
-	<div id="info-window"><span class="close"><i class="fa fa-times"></i></span></div>
-	<div id="map-overlay"></div>
+	<div id="info-window">
+	    <div class="info-window--header">
+	        <div class="inner">
+                <div class="zip-info">
+                    <div class="container">
+                        <h1 class="overall-score"></h1>
+                        <h2 class="regional-score">Regional <span>58.9</span></h2>
+                    </div>
+                    <div class="container">
+                        <h1 class="big-zip"></h1>
+                        <h2 class="score-ratio"></h2>
+                    </div>
+                    
+                    
+                    
+                    <span class="total-numbers"></span>
+                </div>
+	            <div class="meta-info">
+	                <ul>
+	                    <li><a href="#">Share</a></li>
+	                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+	                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+	                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+	                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+	                    <li><a href="#">Download</a></li>
+	                </ul>
+	                <a href="#" class="btn">Get Involved</a>
+	                <a href="#" class="btn">Stay Connected</a>
+	            </div>
+	        </div>
+	        <div class="bottom-bar">
+	            <div class="one-third">
+	                <div class="score child-score"></div>
+	                <div class="text-container">
+                        <h3>Child <br><span>Score</span></h3>
+	                </div>
+	            </div>
+	            <div class="one-third">
+	                <div class="score family-score"></div>
+	                <div class="text-container">
+                        <h3>Family <br><span>Score</span></h3>
+	                </div>
+	            </div>
+	            <div class="one-third">
+	                <div class="score community-score"></div>
+	                <div class="text-container">
+                        <h3>Community <br><span>Score</span></h3>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="info-window--tables">
+	        <table id="childTable">
+                <tr>
+                    <th><span class="big">Child</span> Measures</th>
+                    <th class="zip-code-header"></th>
+                    <th class="regional">Regional</th>
+                </tr>
+                <tr>
+                    <td>Low Weight Births</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">9.3</td>
+                </tr>
+                <tr>
+                    <td>% Students Exceeding 3rd Grade Reading Standards</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">46.0</td>
+                </tr>
+                <tr>
+                    <td>% Students Exceeding 8th Grade Math Standards</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">33.2</td>
+                </tr>
+                <tr>
+                    <td>% High School Graduation Rate</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">74.0</td>
+                </tr>
+                <tr>
+                    <td>High School, College &amp; Career Readiness Score</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">69.8</td>
+                </tr>
+                <tr>
+                    <td>% Children without Health Insurance</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">10.9</td>
+                </tr>
+                <tr>
+                    <td>% Children in Poverty</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">24.1</td>
+                </tr>
+            </table>
+            <table id="familyTable">
+                <tr>
+                    <th><span class="big">Family</span> Measures</th>
+                    <th class="zip-code-header"></th>
+                    <th class="regional">Regional</th>
+                </tr>
+                <tr>
+                    <td>% Families Not Financially Stable</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">30.8</td>
+                </tr>
+                <tr>
+                    <td>% Families with Housing Cost Burdens</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">38.5</td>
+                </tr>
+                <tr>
+                    <td>% Births to Mothers without a High School Diploma</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">13.9</td>
+                </tr>
+            </table>
+            <table id="communityTable">
+                <tr>
+                    <th><span class="big">Family</span> Measures</th>
+                    <th class="zip-code-header"></th>
+                    <th class="regional">Regional</th>
+                </tr>
+                <tr>
+                    <td>% Enrolled in Post-Secondary Education</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">75.1</td>
+                </tr>
+                <tr>
+                    <td>% Adults without a High School Diploma</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">12.3</td>
+                </tr>
+                <tr>
+                    <td>% Adults without Health Insurance</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">23.4</td>
+                </tr>
+                <tr>
+                    <td>Unemployment Rate</td>
+                    <td class="data zip-data"></td>
+                    <td class="regional">12.2</td>
+                </tr>
+            </table>
+	    </div>
+	    
+    </div>
+	<div id="map-overlay">
+	    <div class="one-fourth overall-button" data-target="overall">Overall</div>
+	    <div class="one-fourth child-button" data-target="child">Child</div>
+	    <div class="one-fourth family-button" data-target="family">Family</div>
+	    <div class="one-fourth community-button" data-target="community">Community</div>
+	</div>
 <!--
 	<div class="col-md-4" id="options">
 		<h1 class="text-xs-center">Map Options</h1>
