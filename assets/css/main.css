@@ -75,7 +75,25 @@ body, html {
 #get-started {
   display: inline-block;
   letter-spacing: 1.5px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  position: relative;
+  padding-right: 50px; }
+  #get-started::after {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    content: "";
+    background-image: url("../img/next-arrow.svg");
+    background-size: 25px 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    border: 2px solid #fcb53e;
+    right: 0;
+    bottom: 0;
+    transition: 0.2s background-color ease-out; }
+  #get-started:hover::after {
+    background-color: #fcb53e; }
 
 .start-overlay {
   background-color: rgba(255, 255, 255, 0.9);
@@ -110,10 +128,6 @@ body, html {
     opacity: 1;
     text-align: center;
     transition: 3s opacity ease-out, 1s transform ease-out; }
-    .start-overlay .text-container .h1-container {
-      float: left;
-      width: 100%;
-      height: auto; }
     .start-overlay .text-container h1 {
       font-size: 88px;
       margin-bottom: 20px;

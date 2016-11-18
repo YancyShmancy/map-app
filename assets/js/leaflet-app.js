@@ -34,7 +34,12 @@ $(document).ready(function() {
         }
     });
     
-    
+    $('#get-started').on('click', function(e) {
+        e.preventDefault();
+        $('.start-overlay').fadeOut('slow', function() {
+            $(this).hide();
+        });
+    });
     
     
     function leafletMap() {

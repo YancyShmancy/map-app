@@ -98,6 +98,31 @@ body, html {
     display: inline-block;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+    position: relative;
+    padding-right: 50px;
+    
+    &::after {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        content: "";
+        background-image: url('../img/next-arrow.svg');
+        background-size: 25px 25px;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        border: 2px solid $uw-yellow;
+        right: 0;
+        bottom: 0;
+        transition: 0.2s background-color ease-out;
+    }
+    
+    &:hover {
+        
+        &::after {
+            background-color: $uw-yellow;
+        }
+    }
 }
 
 .start-overlay {
@@ -142,13 +167,6 @@ body, html {
         opacity: 1;
         text-align: center;
         transition: 3s opacity ease-out, 1s transform ease-out;
-        
-        
-        .h1-container {
-            float: left;
-            width: 100%;
-            height: auto;
-        }
         
         h1 {
             font-size: 88px;
