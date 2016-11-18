@@ -59,7 +59,8 @@ body, html {
     bottom: 0;
     left: 0;
     width: 100vw;
-    height: 100px;
+    height: 120px;
+    
     
     .bottom-bar {
         width: 100%;
@@ -67,13 +68,74 @@ body, html {
         position: absolute;
         bottom: 0;
         left: 0;
+        background-color: #0056A7;
+        
     }
     .one-fourth {
         float: left;
         width: 25%;
-        background-color: $uw-red;
         height: 100%;
-        border-right: 2px solid black;
+        color: white;
+        position: relative;
+        transition: 0.2s all ease-out;
+        cursor: pointer;
+        
+        &.overall-button {
+            @include overall-gradient;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+            background-position: bottom;
+            
+            &:hover,
+            &.active {
+                padding-left: 20px;
+            }
+        }
+        
+        &.child-button {
+            @include child-gradient;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+            background-position: bottom;
+        }
+        
+        &.family-button {
+            @include family-gradient;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+            background-position: bottom;
+        }
+        
+        &.community-button {
+            @include community-gradient;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+            background-position: bottom;
+        }
+        
+        &:hover,
+        &.active {
+            background-size: 120% 120%;
+            transform: scale(1.08);
+            z-index:99999;
+        }
+        
+        .score {
+            padding-right: 20px;
+            text-align: right;
+            font-size:52px;
+            font-family: 'alternate-gothic-no-1-d'; 
+            text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        h3 {
+            font-size: 24px;
+            line-height: 17px;
+            
+            span {
+                font-size: 18px;
+            }
+        }
     }
 }
 
@@ -90,13 +152,19 @@ body, html {
     opacity: 0.7;
 }
 
+h2 {
+    font-size: 14px;
+    margin: 0;
+}
+
 #info-window {
-    width: 800px;
+    width: 810px;
     height: auto;
     background-color: white;
     position: absolute;
     top: 30px;
     left: 50%;
+    border-radius: $border-radius;
     margin-left: -400px;
     opacity: 0;
     transform: translateY(-100%);
@@ -107,69 +175,40 @@ body, html {
     box-shadow: 0px 7px 16px 5px rgba(0,0,0,0.13);
     margin-bottom: 500px;
     
+    h2, h3 {
+        font-family: 'alternate-gothic-no-3-d';
+        font-style: normal;
+        font-weight: 400;
+    }
+    
     &.active {
         transform: translateY(0);
         opacity: 1;
     }
     
     span.big {
-        font-size: 2em;
+        font-size: 48px;
     }
     
-    div.close-btn {
+    span.close-btn {
         position: absolute;
         top: 20px;
         right: 20px;
         cursor: pointer;
-        height: 30px;
-        width: 30px;
+        height: 45px;
+        width: 45px;
         color: white;
+        background-color: $uw-blue;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 50%;
+        line-height:40px;
+        padding-left: 1px;
+        opacity: 0.6;
+        transition: 0.2s opacity ease-in-out;
         
-        span {
-            display: block;
-            height: 2px;
-            width: 50%;
-            background: #fff;
+        &:hover {
             opacity: 1;
-            transition: 0.2s all ease-out;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-left: -7.5px;
-            
-            &:nth-of-type(1) {
-                transform: rotate(45deg) translateX(25%);
-            }
-            
-            &:nth-of-type(2) {
-                transform: rotate(-45deg) translateX(-25%);
-            }
-            
-            &:nth-of-type(3) {
-                transform: rotate(-45deg) translateX(25%);
-            }
-            
-            &:nth-of-type(4) {
-                transform: rotate(45deg) translateX(-25%);
-            }
-        }
-        
-        &:hover span {
-            &:nth-of-type(1) {
-                transform: rotate(45deg) translateX(45%);
-            }
-            
-            &:nth-of-type(2) {
-                transform: rotate(-45deg) translateX(-45%);
-            }
-            
-            &:nth-of-type(3) {
-                transform: rotate(-45deg) translateX(45%);
-            }
-            
-            &:nth-of-type(4) {
-                transform: rotate(45deg) translateX(-45%);
-            }
         }
     }
     
@@ -178,12 +217,22 @@ body, html {
         display: block;
         border-spacing: 0;
         margin-top: 40px;
-        border-collapse:collapse;
+        border-collapse: collapse;
+        
+        &:nth-of-type(1) {
+            margin-top: 70px;
+        }
+        
+        tr td:nth-of-type(1) {
+            font-family: "ff-meta-web-pro";
+            font-style: normal;
+            font-weight: 400;
+            color: $dark-grey;
+        }
         
         tr:nth-of-type(1) {
             margin-bottom: 20px;
             position: relative;
-            border-bottom: 2px solid black;
         }
         
         tr:nth-of-type(2) td {
@@ -192,10 +241,15 @@ body, html {
         
         td {
             padding: 10px 0;
+            font-size: 18px;
         }
         th {
             text-align: center;
-            padding: 20px 0 10px 0;
+            padding: 13px 0 0px 0;
+            font-family: 'alternate-gothic-no-3-d';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 21px;
         }
         
         th:nth-of-type(1) {
@@ -209,11 +263,15 @@ body, html {
         .zip-data, 
         .regional {
             text-align: center;
-            width: 150px;
+            width: 100px;
+            font-family: 'alternate-gothic-no-3-d';
+            font-style: normal;
+            font-weight: 400;
         }
         
         .regional {
-            background-color: lightgrey;
+            background-color: $grey;
+            color: $dark-grey;
         }
     }
     
@@ -221,11 +279,16 @@ body, html {
         float: left;
         position: relative;
         width: 100%;
-        height: 200px;
-        background-color: blue;
-        padding: 20px;
+        height: 215px;
+        @include overall-gradient;
+        border-radius: $border-radius $border-radius 0 0;
+        padding: 30px 30px;
         color: white;
         text-transform: uppercase;
+        
+        h1, h2, h3 {
+            letter-spacing: 1.5px;
+        }
         
         .inner {
             float: left;
@@ -235,21 +298,31 @@ body, html {
         
         .zip-info {
             float: left;
-            width: 50%;
+            width: 52%;
             height: auto;
             
             
             h1 {
                 float: left;
                 text-align: center;
-                font-size: 4em;
-                margin-top: 0;
-                margin-bottom: 10px;
+                margin-top: -20px;
+                margin-bottom: 0px;
+                font-family: 'alternate-gothic-no-1-d';
+                font-weight: 400;
+                font-style: normal;
+                font-size: 120px;
+                height: 120px;
+                text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
+                
+                &.big-zip {
+                    opacity: 0.5;
+                }
             }
             
             h2 {
                 font-size: 0.8em;
-                
+                float: left;
+                width: 100%;
                 span {
                     float: right;
                 }
@@ -263,21 +336,29 @@ body, html {
                 &:nth-of-type(1) {
                     padding-right: 20px;
                     border-right: 1px dotted white;
+                    width: 162px;
                 }
                 
                 &:nth-of-type(2) {
                     padding-left: 20px;
+                    width: 222px;
                 }
             }
         }
         
         .meta-info {
             float: left;
-            width: 50%;
+            width: 48%;
             height: 100%;
             text-align: right;
+            
             a {
                 color: white;
+                font-family: 'alternate-gothic-no-3-d';
+                font-weight: 400;
+                font-style: normal;
+                font-size: 14px;
+                letter-spacing: 1.5px;
             }
             ul {
                 list-style-type: none;
@@ -286,18 +367,61 @@ body, html {
                 width: 100%;
                 text-align: right;
                 padding-right: 50px;
+                margin-top: 0;
+                margin-bottom: 32px;
             }
             
             li {
                 display: inline;
+                
+                a {
+                    margin: 0 2.5px;
+                    
+                    &.share {
+                        opacity: 0.6;
+                    }
+                    
+                    i {
+                        font-size: 20px;
+                    }
+                    
+                    &.download {
+                        margin: 0 23px;
+                    }
+                }
+            }
+            
+            .button-container {
+                margin-top: 30px;
+                float: left;
+                width: 100%;
+                text-align: right;
+                
+                .btn {
+                    display: inline-block;
+                    width: auto;
+                    border: 1px solid rgba(255,255,255,0.7);
+                    padding: 7px 10px 5px 10px;
+                    border-radius: 20px;
+                    margin-left: 10px;
+                    text-decoration: none;
+                    text-align: center;
+                    
+                    transition: 0.2s all ease-in-out;
+                    
+                    &:hover {
+                        background-color: white;
+                        color: black;
+                    }
+                }
             }
         }
         
         .bottom-bar {
-            height: 75px;
+            height: auto;
             position: absolute;
-            bottom: -37.5px;
-            padding: 0 20px;
+            top: 74%;
+            padding: 0 30px;
             width: 100%;
             left: 0;
             
@@ -305,18 +429,69 @@ body, html {
                 width: 33.33333%;
                 float: left;
                 height: 100%;
-                background-color: black;
                 
                 &:nth-of-type(1) {
-                    background-color: $uw-red;
+                    
+                    .one-third--score-container {
+                        @include child-gradient;
+                        border-radius: $border-radius 0 0 0;
+                    }
                 }
                 
                 &:nth-of-type(2) {
-                    background-color: $uw-orange;
+                    
+                    .one-third--score-container {
+                        @include family-gradient;
+                    }
                 }
                 
                 &:nth-of-type(3) {
-                    background-color: darkblue;
+                    .one-third--score-container {
+                        @include community-gradient;
+                        border-radius: 0 $border-radius 0 0;
+                    }
+                }
+                
+                .one-third--score-container {
+                    float: left;
+                    width: 100%;
+                    height: 56px;
+                }
+                
+                h2.bottom-total {
+                    padding: 10px 20px;
+                    float: left;
+                    width: 100%;
+                    background-color: $grey;
+                    color: $dark-grey;
+                    
+                    &.total-children {
+                        background-color: $light-red;
+                    }
+                    
+                    &.total-families {
+                        background-color: $light-yellow;
+                    }
+                    
+                    &.total-population {
+                        background-color: $light-blue;
+                    }
+                }
+                
+                .text-container h3 {
+                    padding-left: 10px;
+                    font-size: 18px;
+                    line-height: 17px;
+                    
+                    span {
+                        opacity: 0.5;
+                    }
+                }
+                
+                .score {
+                    font-size: 44px;
+                    line-height: 60px;
+                    text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
                 }
             }
         }
@@ -336,7 +511,7 @@ body, html {
         float: left;
         width: 100%;
         position: relative;
-        padding: 20px;
+        padding: 20px 30px;
     }
 }
 
@@ -353,9 +528,16 @@ body, html {
             font-size: 0.8em;
             margin: 0;
             position: absolute;
+            font-family: 'alternate-gothic-no-3-d';
+            font-style: normal;
+            font-weight: 400;
             top: 50%;
             left: 0;
             transform: translateY(-50%);
+            
+            span {
+                opacity: 0.5;
+            }
         }
     }
 
@@ -363,9 +545,13 @@ body, html {
         float: left;
         width: 30%;
         height: 100%;
-        text-align: center;
-        line-height: 75px;
+        text-align: left;
+        line-height: 60px;
         font-size: 2em;
+        padding-left:20px;
+        font-family: 'alternate-gothic-no-1-d';
+        font-weight: 400;
+        font-style: normal;
     }
 }
 
@@ -377,7 +563,16 @@ body, html {
     
     .zip-data,
     .zip-code-header {
-        background-color: $uw-red;
+        background-color: $light-red;
+        color: $uw-red;
+    }
+    
+    th:nth-of-type(1) {
+        color: $uw-red;
+    }
+    
+    tr:nth-of-type(1) {
+        border-bottom: 2px solid $uw-red;
     }
 }
 
@@ -385,7 +580,16 @@ body, html {
     
     .zip-data,
     .zip-code-header {
-        background-color: $uw-orange;
+        background-color: $light-yellow;
+        color: $uw-yellow;
+    }
+    
+    th:nth-of-type(1) {
+        color: $uw-yellow;
+    }
+    
+    tr:nth-of-type(1) {
+        border-bottom: 2px solid $uw-yellow;
     }
 }
 
@@ -393,7 +597,16 @@ body, html {
     
     .zip-data,
     .zip-code-header {
-        background-color: darkblue;
+        background-color: $light-blue;
+        color: $uw-blue;
+    }
+    
+    th:nth-of-type(1) {
+        color: $uw-blue;
+    }
+    
+    tr:nth-of-type(1) {
+        border-bottom: 2px solid $uw-blue;
     }
 }
 
@@ -407,11 +620,11 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 65px;
+    height: 60px;
     background-color: white;
     -webkit-box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
--moz-box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
-box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
+    -moz-box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
+    box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
     
     .logo-container {
         width: 200px;
@@ -428,27 +641,39 @@ box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
     }
     
     .legend-container {
-        width: auto;
+        width: 500px;
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 0;
+        height: 100%;
+        transform: translateX(-50%);
+        color: $dark-grey;
         
-        transform: translateX(-50%) translateY(-50%);
         h2 {
-            font-size: 1em;
-            float:left;
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'alternate-gothic-no-3-d';
+            font-size: 16px;
         }
         
         .legend {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateY(-70%);
             width: 200px;
-            float:left;
             padding-left: 10px;
             
             span {
                 float: left;
                 width: 33.3%;
-                
+                font-family: "ff-meta-web-pro";
+                font-style: normal;
+                font-weight: 400;
                 padding-right: 2px;
+                font-size: 11px;
             }
             
             i {
@@ -539,6 +764,8 @@ box-shadow: 2px 9px 14px 1px rgba(0,0,0,0.08);
         margin: 0;
     }
 }
+
+
 
 
 

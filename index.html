@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="./assets/leaflet-search/src/leaflet-search.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="./assets/css/main.css">
+	<script src="https://use.typekit.net/isn7dde.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 </head>
 <body>
     <div id="loader">
@@ -28,50 +30,64 @@
                         <h1 class="big-zip"></h1>
                         <h2 class="score-ratio"></h2>
                     </div>
-                    <div class="total-numbers">
-                        <span class="population"></span>
-                        <span class="total-children"></span>
-                        <span class="total-families"></span>
-                    </div>
                 </div>
 	            <div class="meta-info">
 	                <ul>
-	                    <li><a href="#">Share</a></li>
-	                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-	                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-	                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-	                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-	                    <li><a href="#">Download</a></li>
+	                    <li><a href="#" class="share">Share</a></li>
+	                    <li><a href="#" class="social"><i class="fa fa-facebook"></i></a></li>
+	                    <li><a href="#" class="social"><i class="fa fa-twitter"></i></a></li>
+	                    <li><a href="#" class="social"><i class="fa fa-linkedin"></i></a></li>
+	                    <li><a href="#" class="social"><i class="fa fa-envelope"></i></a></li>
+	                    <li><a href="#" class="download">Download</a></li>
 	                </ul>
-	                <a href="#" class="btn">Get Involved</a>
-	                <a href="#" class="btn">Stay Connected</a>
+	                <div class="button-container">
+	                    <a href="#" class="btn">Get Involved</a>
+	                    <a href="#" class="btn">Stay Connected</a>
+	                </div>
+	                
 	            </div>
 	        </div>
 	        <div class="bottom-bar">
 	            <div class="one-third">
-	                <div class="score child-score"></div>
-	                <div class="text-container">
-                        <h3>Child <br><span>Score</span></h3>
-	                </div>
+                    <div class="one-third--score-container">
+                        <div class="score child-score"></div>
+                        <div class="text-container">
+                            <h3>Child <br><span>Score</span></h3>
+                        </div>
+                    </div>
+	                <h2 class="total-children bottom-total"></h2>
+	                <h2 class="regional-children bottom-total">Regional Total 1,280,411</h2>
 	            </div>
 	            <div class="one-third">
-	                <div class="score family-score"></div>
-	                <div class="text-container">
-                        <h3>Family <br><span>Score</span></h3>
-	                </div>
+                    <div class="one-third--score-container">
+                        <div class="score family-score"></div>
+                        <div class="text-container">
+                            <h3>Family <br><span>Score</span></h3>
+                        </div>
+                    </div>
+	                
+	                <h2 class="total-families bottom-total"></h2>
+	                <h2 class="regional-families bottom-total">Regional Total 1,082,916</h2>
 	            </div>
 	            <div class="one-third">
-	                <div class="score community-score"></div>
-	                <div class="text-container">
-                        <h3>Community <br><span>Score</span></h3>
-	                </div>
+                    <div class="one-third--score-container">
+                        <div class="score community-score"></div>
+                        <div class="text-container">
+                            <h3>Community <br><span>Score</span></h3>
+                        </div>
+                    </div>
+	                <h2 class="total-population bottom-total"></h2>
+	                <h2 class="regional-population bottom-total">Regional Total 4,401,046</h2>
+	            </div>
+	            <div class="one-third">
+	                
 	            </div>
 	        </div>
 	    </div>
 	    <div class="info-window--tables">
 	        <table id="childTable">
                 <tr>
-                    <th><span class="big">Child</span> Measures</th>
+                    <th><span class="big">Child</span> measures</th>
                     <th class="zip-code-header"></th>
                     <th class="regional">Regional</th>
                 </tr>
@@ -113,7 +129,7 @@
             </table>
             <table id="familyTable">
                 <tr>
-                    <th><span class="big">Family</span> Measures</th>
+                    <th><span class="big">Family</span> measures</th>
                     <th class="zip-code-header"></th>
                     <th class="regional">Regional</th>
                 </tr>
@@ -135,7 +151,7 @@
             </table>
             <table id="communityTable">
                 <tr>
-                    <th><span class="big">Family</span> Measures</th>
+                    <th><span class="big">Community</span> measures</th>
                     <th class="zip-code-header"></th>
                     <th class="regional">Regional</th>
                 </tr>
@@ -191,27 +207,27 @@
         
         <div class="bottom-bar">
             <div class="one-fourth overall-button" data-target="overall">
-                <div class="score overall-score"></div>
+                <div class="score overall-score">58.9</div>
                 <div class="text-container">
-                    <h3>Overall <br><span>Scores</span></h3>
+                    <h3>Overall CWB<br><span>Score</span></h3>
                 </div>
             </div>
             <div class="one-fourth child-button" data-target="child">
-                <div class="score child-score"></div>
+                <div class="score child-score">53.0</div>
                 <div class="text-container">
-                    <h3>Child <br><span>Scores</span></h3>
+                    <h3>Child <br><span>Score</span></h3>
                 </div>
             </div>
             <div class="one-fourth family-button" data-target="family">
-                <div class="score family-score"></div>
+                <div class="score family-score">62.5</div>
                 <div class="text-container">
-                    <h3>Family <br><span>Scores</span></h3>
+                    <h3>Family <br><span>Score</span></h3>
                 </div>
             </div>
             <div class="one-fourth community-button" data-target="community">
-                <div class="score community-score"></div>
+                <div class="score community-score">62.3</div>
                 <div class="text-container">
-                    <h3>Community <br><span>Scores</span></h3>
+                    <h3>Community <br><span>Score</span></h3>
                 </div>
             </div>
         </div>

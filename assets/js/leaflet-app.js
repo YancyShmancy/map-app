@@ -253,7 +253,8 @@ $(document).ready(function() {
     
     $('.one-fourth').on('click', function() {
         var target = $(this).attr('data-target');
-
+        $('.one-fourth.active').removeClass('active');
+        $(this).addClass('active');
         mode = target;
         $(document).trigger('redraw-tiles');
     });
@@ -282,9 +283,9 @@ $(document).ready(function() {
         $('#info-window .child-score').html(overallData.overall_child_score);
         $('#info-window .family-score').html(overallData.overall_family_score);
         $('#info-window .community-score').html(overallData.overall_community_score);
-        $('#info-window .total-numbers .population').html('Population: ' + popData.total_population);
-        $('#info-window .total-numbers .total-children').html('Children: ' + popData.total_children);
-        $('#info-window .total-numbers .total-families').html('Families: ' + popData.total_families);
+        $('#info-window .bottom-bar .total-population').html('Total Population ' + popData.total_population);
+        $('#info-window .bottom-bar .total-children').html('Total Children ' + popData.total_children);
+        $('#info-window .bottom-bar .total-families').html('Total Families ' + popData.total_families);
 
         var $childTable = $('#childTable'),
             $childDataFields = $('#childTable td.data'),
@@ -355,10 +356,11 @@ $(document).ready(function() {
 
 //        var $closeButton = $('<div class="close-btn"><span></span><span></span><span></span><span></span></div>');
         
-        var $closeButton = $('<div class="close-btn">X</div>')
+        var $closeButton = $('<span class="close-btn">&times;</span>')
         $closeButton.on('click', function() {
             $infoDiv.removeClass('active');
             $(document).trigger('reset-view');
+            $(this).remove();
         });
         $infoDiv.append($closeButton);
 
