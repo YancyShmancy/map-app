@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    $('.loader-body').addClass('animation');
+    $('.start-overlay').addClass('active');
+    
+    setTimeout(function() {
+        $('.ink-transition').addClass('hide');
+    }, 1500);
     var allFields = [],
         mode = 'overall',
         modeButtons = $('#map-overlay .one-fourth').toArray(),
@@ -13,15 +19,7 @@ $(document).ready(function() {
             for(var i=0; i < d.length; i++) {
                 allFields[i] = d[i];
             }
-//            console.log(allFields);
             leafletMap();
-        },
-        complete: function() {
-            $('#loader').fadeOut('slow', function() {
-                $(this).hide();
-            });
-            
-//            console.log(allFields);
         }
     });
     

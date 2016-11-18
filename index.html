@@ -11,8 +11,48 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
 </head>
 <body>
-    <div id="loader">
-        <img src="./assets/img/rolling.gif" alt="Loader Gif">
+    
+    <div class="ink-transition">
+        <div id="loader">
+            <div class="loader-body">
+                <div class="loader-anim">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="start-overlay">
+        <img src="./assets/img/blue-watercolor.png" alt="Loader Gif">
+        <div class="text-container">
+            <div class="social-container">
+                <a href="#" class="share"><span>Share</span> the <span>Index</span></a>
+                <a href="#">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                </a>
+            </div>
+            
+            <div class="header-bg">
+            </div>
+            
+            <div class="h1-container">
+                <h1>It <span>starts</span> with<br>the <span>children</span></h1>
+            </div>
+            
+           
+            
+            <p>When children thrive, communities can thrive. <br>By ensuring that every child in our community has the opportunity to reach his or her potential, we are building a strong future for Greater Atlanta.</p>
+            <a href="#" id="get-started">Get Started</a>
+        </div>
+        
     </div>
 
 	<div class="col-xs-12" id="map">
@@ -206,7 +246,7 @@
 	<div id="map-overlay">
         
         <div class="bottom-bar">
-            <div class="one-fourth overall-button" data-target="overall">
+            <div class="one-fourth overall-button active" data-target="overall">
                 <div class="score overall-score">58.9</div>
                 <div class="text-container">
                     <h3>Overall CWB<br><span>Score</span></h3>
@@ -233,6 +273,8 @@
         </div>
 	    
 	</div>
+	
+	
 <!--
 	<div class="col-md-4" id="options">
 		<h1 class="text-xs-center">Map Options</h1>
